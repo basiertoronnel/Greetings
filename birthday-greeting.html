@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Happy Birthday! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        .birthday-text {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            white-space: nowrap;
+            word-break: keep-all;
+            overflow: visible;
+            width: 100%;
+            text-align: center;
+        }
+
+        .birthday-text span {
+            display: inline-block;
+            animation: bounce 0.6s ease-in-out;
+            animation-delay: calc(var(--i) * 0.1s);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .message {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            font-weight: 500;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #ff6b6b;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #4ecdc4;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #ffe66d;
+        }
+
+        .confetti:nth-child(5n) {
+            background: #a8e6cf;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 3s ease-in-out infinite;
+            font-size: 3rem;
+        }
+
+        .balloon1 {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .balloon2 {
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .balloon3 {
+            left: 50%;
+            top: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .cake {
+            font-size: 5rem;
+            margin: 2rem 0;
+            opacity: 0;
+            animation: scaleIn 0.8s ease-out 1.5s forwards;
+        }
+
+        .photo-container {
+            margin: 2rem auto;
+            opacity: 1;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        /* Ensure photos are visible even if animation doesn't run */
+        @media (prefers-reduced-motion: reduce) {
+            .photo-container {
+                opacity: 1 !important;
+            }
+            .photo, .random-photo {
+                opacity: 1 !important;
+            }
+        }
+        
+        .photos-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .photo {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: photoGlow 2s ease-in-out infinite;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            background-size: cover;
+            background-position: center;
+            display: block !important;
+            margin: 0 auto;
+            min-height: 350px;
+            opacity: 1 !important;
+            visibility: visible !important;
+            font-size: 0 !important;
+            line-height: 0 !important;
+            text-indent: -9999px !important;
+            overflow: hidden;
+            color: transparent !important;
+            text-align: center;
+            text-decoration: none !important;
+            /* Hide broken image icon and any text */
+            font-family: Arial, sans-serif;
+        }
+        
+        .photo::before,
+        .photo::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        @keyframes photoGlow {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .random-photo {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+            opacity: 1 !important;
+            animation: floatRandom 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            background-size: cover;
+            background-position: center;
+            display: block !important;
+            flex-shrink: 0;
+            min-height: 250px;
+            visibility: visible !important;
+            font-size: 0 !important;
+            line-height: 0 !important;
+            text-indent: -9999px !important;
+            overflow: hidden;
+            color: transparent !important;
+            text-align: center;
+            text-decoration: none !important;
+            /* Hide broken image icon and any text */
+            font-family: Arial, sans-serif;
+        }
+        
+        .random-photo::before,
+        .random-photo::after {
+            display: none !important;
+            content: none !important;
+        }
+        
+        .random-photo-right {
+            border-color: #4ecdc4;
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+        
+        .random-photo-left {
+            order: 1;
+        }
+        
+        .random-photo-right {
+            order: 3;
+        }
+        
+        .photo {
+            order: 2;
+        }
+
+        @keyframes fadeInRandom {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatRandom {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Very Large Screens */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+            .photos-wrapper {
+                gap: 3rem;
+            }
+        }
+
+        /* Large Tablets and Small Desktops */
+        @media (max-width: 1024px) {
+            .photos-wrapper {
+                gap: 1.5rem;
+            }
+            .photo {
+                width: 300px;
+                height: 300px;
+            }
+            .random-photo {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0;
+                overflow-x: hidden;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            /* Ensure photos are always visible on mobile */
+            .photo-container {
+                opacity: 1 !important;
+            }
+            .photo, .random-photo {
+                opacity: 1 !important;
+                display: block !important;
+            }
+            .photos-wrapper {
+                flex-direction: row;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .birthday-text {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+            .birthday-text span {
+                margin: 0 2px;
+                white-space: nowrap;
+            }
+            .name {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .message {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+            .photo {
+                width: 250px;
+                height: 250px;
+                border-width: 4px;
+            }
+            .photo-container {
+                margin: 1.5rem auto;
+            }
+            .random-photo {
+                width: 180px;
+                height: 180px;
+                border-width: 4px;
+            }
+            .cake {
+                font-size: 4rem;
+                margin: 1.5rem 0;
+            }
+            .balloon {
+                width: 50px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            .balloon1 {
+                left: 5%;
+            }
+            .balloon2 {
+                right: 5%;
+            }
+        }
+
+        /* Small Tablets and Large Phones */
+        @media (max-width: 600px) {
+            .photos-wrapper {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .random-photo-left {
+                order: 2;
+            }
+            .random-photo-right {
+                order: 3;
+            }
+            .photo {
+                order: 1;
+            }
+            .birthday-text {
+                font-size: 2.2rem;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+            .birthday-text span {
+                white-space: nowrap;
+            }
+            .photo {
+                width: 240px;
+                height: 240px;
+            }
+            .random-photo {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem 0;
+            }
+            .container {
+                padding: 0 0.5rem;
+            }
+            /* Force photos to be visible on mobile */
+            .photo-container {
+                opacity: 1 !important;
+            }
+            .photo, .random-photo {
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            }
+            .photos-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .birthday-text {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+            .birthday-text span {
+                margin: 0 1px;
+                white-space: nowrap;
+            }
+            .name {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .message {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                padding: 0 1.5rem;
+            }
+            .photo {
+                width: 220px;
+                height: 220px;
+                border-width: 3px;
+            }
+            .photo-container {
+                margin: 1rem auto;
+            }
+            .random-photo {
+                width: 150px;
+                height: 150px;
+                border-width: 3px;
+            }
+            .cake {
+                font-size: 3.5rem;
+                margin: 1rem 0;
+            }
+            .balloon {
+                width: 40px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Small Mobile Phones */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 0.25rem;
+            }
+            .birthday-text {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+            .birthday-text span {
+                margin: 0;
+                white-space: nowrap;
+            }
+            .name {
+                font-size: 1.3rem;
+                margin-bottom: 0.75rem;
+            }
+            .message {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                padding: 0 1rem;
+            }
+            .photo {
+                width: 200px;
+                height: 200px;
+                border-width: 3px;
+            }
+            .random-photo {
+                width: 140px;
+                height: 140px;
+                border-width: 3px;
+            }
+            .cake {
+                font-size: 3rem;
+                margin: 0.75rem 0;
+            }
+            .balloon {
+                width: 35px;
+                height: 55px;
+                font-size: 1.75rem;
+            }
+            .photos-wrapper {
+                gap: 0.75rem;
+            }
+        }
+
+        /* Landscape Orientation on Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .photos-wrapper {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            .photo {
+                width: 200px;
+                height: 200px;
+            }
+            .random-photo {
+                width: 150px;
+                height: 150px;
+            }
+            .birthday-text {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+            .birthday-text span {
+                white-space: nowrap;
+            }
+            .name {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .message {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="birthday-text">
+            <span style="--i: 0">H</span>
+            <span style="--i: 1">a</span>
+            <span style="--i: 2">p</span>
+            <span style="--i: 3">p</span>
+            <span style="--i: 4">y</span>
+            <span style="--i: 5"> </span>
+            <span style="--i: 6">B</span>
+            <span style="--i: 7">i</span>
+            <span style="--i: 8">r</span>
+            <span style="--i: 9">t</span>
+            <span style="--i: 10">h</span>
+            <span style="--i: 11">d</span>
+            <span style="--i: 12">a</span>
+            <span style="--i: 13">y</span>
+            <span style="--i: 14">!</span>
+        </h1>
+        <div class="cake">🎂</div>
+        <div class="photo-container">
+            <div class="photos-wrapper">
+                <img src="https://i.imgur.com/3jxPzAz.jpeg" alt="" class="random-photo random-photo-left" id="random-birthday-photo" width="250" height="250">
+                <img src="https://i.imgur.com/5lv2ki9.jpeg" alt="" class="photo" id="birthday-photo" width="350" height="350">
+                <img src="https://i.imgur.com/lFYZXR4.jpeg" alt="" class="random-photo random-photo-right" id="random-birthday-photo-2" width="250" height="250">
+            </div>
+        </div>
+        <div class="name" id="name">Reyme Lyka!</div>
+        <div class="message">Wishing you a day filled with happiness and a year filled with joy! 🎉🎈🎊</div>
+    </div>
+
+    <div class="balloon balloon1">🎈</div>
+    <div class="balloon balloon2">🎈</div>
+
+    <script>
+        // Immediately hide any text in images on page load
+        (function() {
+            function hideImageText() {
+                const images = document.querySelectorAll('.photo, .random-photo');
+                images.forEach(img => {
+                    if (img) {
+                        img.alt = '';
+                        img.title = '';
+                        img.style.fontSize = '0';
+                        img.style.lineHeight = '0';
+                        img.style.color = 'transparent';
+                        img.style.textIndent = '-9999px';
+                    }
+                });
+            }
+            // Run immediately
+            hideImageText();
+            // Run on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideImageText);
+            } else {
+                hideImageText();
+            }
+        })();
+        
+        // Load image with multiple fallback URLs
+        function loadImageWithFallbacks(imgElement, urls, currentIndex) {
+            if (!imgElement) {
+                showPlaceholder(imgElement);
+                return;
+            }
+            
+            if (currentIndex >= urls.length) {
+                // All URLs failed, show placeholder
+                showPlaceholder(imgElement);
+                return;
+            }
+            
+            const currentUrl = urls[currentIndex];
+            
+            // Create a test image to check if URL works
+            const testImg = new Image();
+            
+            // Set timeout to move to next URL if this one takes too long
+            const timeout = setTimeout(() => {
+                if (testImg.src === currentUrl && (!testImg.complete || testImg.naturalHeight === 0)) {
+                    loadImageWithFallbacks(imgElement, urls, currentIndex + 1);
+                }
+            }, 3000);
+            
+            testImg.onload = function() {
+                clearTimeout(timeout);
+                // This URL works, use it directly
+                imgElement.src = currentUrl;
+                imgElement.style.background = 'none';
+                imgElement.style.backgroundImage = 'none';
+                imgElement.style.objectFit = 'cover';
+                imgElement.onerror = null; // Remove error handler since it loaded
+            };
+            
+            testImg.onerror = function() {
+                clearTimeout(timeout);
+                // This URL failed, try next one
+                loadImageWithFallbacks(imgElement, urls, currentIndex + 1);
+            };
+            
+            // Start loading test
+            testImg.src = currentUrl;
+        }
+        
+        // Show placeholder when all images fail
+        function showPlaceholder(img) {
+            if (!img) return;
+            
+            img.alt = '';
+            img.title = '';
+            img.style.display = 'block';
+            img.style.opacity = '1';
+            img.style.visibility = 'visible';
+            img.style.backgroundSize = 'cover';
+            img.style.backgroundPosition = 'center';
+            img.style.objectFit = 'none';
+            img.style.fontSize = '0';
+            img.style.lineHeight = '0';
+            img.style.color = 'transparent';
+            img.style.textIndent = '-9999px';
+            
+            if (img.id === 'birthday-photo') {
+                img.style.background = 'linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)';
+            } else if (img.id === 'random-birthday-photo') {
+                img.style.background = 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)';
+            } else if (img.id === 'random-birthday-photo-2') {
+                img.style.background = 'linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%)';
+            }
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const confettiCount = 50;
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Create sparkles
+        function createSparkles() {
+            const sparkleCount = 30;
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1.5 + 's';
+                document.body.appendChild(sparkle);
+            }
+        }
+
+        // Get name from URL parameter
+        function getNameFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            if (name) {
+                document.getElementById('name').textContent = `${decodeURIComponent(name)}!`;
+            }
+        }
+
+        // Try multiple Google Drive URL formats (including Messenger-compatible formats)
+        function tryGoogleDriveUrls(img, fileId) {
+            // Make sure image is visible immediately
+            img.style.display = 'block';
+            
+            // Try using a proxy service for better mobile compatibility
+            const proxyUrls = [
+                `https://drive.google.com/uc?export=view&id=${fileId}`,
+                `https://drive.google.com/uc?export=download&id=${fileId}`,
+                `https://lh3.googleusercontent.com/d/${fileId}=w800-h800`,
+                `https://lh3.googleusercontent.com/d/${fileId}=s800`,
+                `https://docs.google.com/uc?export=view&id=${fileId}`,
+                `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`,
+                // Try with referrer policy
+                `https://drive.google.com/uc?id=${fileId}&export=download`
+            ];
+            
+            let currentIndex = 0;
+            let attempts = 0;
+            const maxAttempts = proxyUrls.length;
+            let imageLoaded = false;
+            
+            function tryNext() {
+                if (imageLoaded) return; // Stop if image already loaded
+                
+                if (currentIndex < proxyUrls.length && attempts < maxAttempts) {
+                    attempts++;
+                    // Remove crossorigin and set referrer policy for better mobile support
+                    img.removeAttribute('crossorigin');
+                    img.setAttribute('referrerpolicy', 'no-referrer');
+                    img.setAttribute('loading', 'eager');
+                    img.src = proxyUrls[currentIndex];
+                    currentIndex++;
+                } else {
+                    // If all URLs fail, ensure placeholder is shown
+                    if (!imageLoaded) {
+                        handleImageError(img);
+                    }
+                }
+            }
+            
+            // Set up error handler
+            img.onerror = function() {
+                if (!imageLoaded) {
+                    setTimeout(tryNext, 300); // Small delay before trying next URL
+                }
+            };
+            
+            // Set up load handler
+            img.onload = function() {
+                imageLoaded = true;
+                handleImageLoad(img);
+            };
+            
+            // Set a timeout to show placeholder if images don't load within 3 seconds
+            setTimeout(function() {
+                if (!imageLoaded && (!img.complete || img.naturalHeight === 0)) {
+                    handleImageError(img);
+                }
+            }, 3000);
+            
+            // Start trying to load immediately
+            tryNext();
+        }
+
+        // Load all photos with multiple URL attempts
+        function loadAllPhotos() {
+            const centerPhoto = document.getElementById('birthday-photo');
+            const randomPhoto = document.getElementById('random-birthday-photo');
+            const randomPhoto2 = document.getElementById('random-birthday-photo-2');
+            
+            // Multiple URL formats to try for each image (trying different formats and domains)
+            const photoUrls = {
+                center: [
+                    'https://i.imgur.com/5lv2ki9.jpeg',
+                    'https://i.imgur.com/5lv2ki9.jpg',
+                    'https://imgur.com/a/5lv2ki9',
+                    'https://i.imgur.com/5lv2ki9.png',
+                    'https://imgur.com/5lv2ki9.jpeg'
+                ],
+                left: [
+                    'https://i.imgur.com/3jxPzAz.jpeg',
+                    'https://i.imgur.com/3jxPzAz.jpg',
+                    'https://imgur.com/a/3jxPzAz',
+                    'https://i.imgur.com/3jxPzAz.png',
+                    'https://imgur.com/3jxPzAz.jpeg'
+                ],
+                right: [
+                    'https://i.imgur.com/lFYZXR4.jpeg',
+                    'https://i.imgur.com/lFYZXR4.jpg',
+                    'https://imgur.com/a/lFYZXR4',
+                    'https://i.imgur.com/lFYZXR4.png',
+                    'https://imgur.com/lFYZXR4.jpeg'
+                ]
+            };
+            
+            // Load each photo with fallbacks - only if src is empty or image failed
+            if (centerPhoto && (!centerPhoto.src || centerPhoto.src === window.location.href || centerPhoto.complete === false)) {
+                loadImageWithFallbacks(centerPhoto, photoUrls.center, 0);
+            }
+            if (randomPhoto && (!randomPhoto.src || randomPhoto.src === window.location.href || randomPhoto.complete === false)) {
+                loadImageWithFallbacks(randomPhoto, photoUrls.left, 0);
+            }
+            if (randomPhoto2 && (!randomPhoto2.src || randomPhoto2.src === window.location.href || randomPhoto2.complete === false)) {
+                loadImageWithFallbacks(randomPhoto2, photoUrls.right, 0);
+            }
+        }
+
+        // Load photos with Google Drive fallback
+        function loadGoogleDrivePhotos() {
+            const centerPhoto = document.getElementById('birthday-photo');
+            const randomPhoto = document.getElementById('random-birthday-photo');
+            const randomPhoto2 = document.getElementById('random-birthday-photo-2');
+            
+            // Photo 1 (Centered): 1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr
+            if (centerPhoto && !centerPhoto.src) {
+                tryGoogleDriveUrls(centerPhoto, '1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr');
+            }
+            
+            // Photo 2 (Random): 1zJljrL1XIhvS7swt9ZGEp_bQutFIOxI9
+            if (randomPhoto && !randomPhoto.src) {
+                tryGoogleDriveUrls(randomPhoto, '1zJljrL1XIhvS7swt9ZGEp_bQutFIOxI9');
+            }
+            
+            // Photo 3 (Random): 1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7
+            if (randomPhoto2 && !randomPhoto2.src) {
+                tryGoogleDriveUrls(randomPhoto2, '1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7');
+            }
+        }
+
+        // Load photos from URL parameters or use Google Drive photos
+        function loadPhotosFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const photo1 = urlParams.get('photo1');
+            const photo2 = urlParams.get('photo2');
+            const photo3 = urlParams.get('photo3');
+            
+            const centerPhoto = document.getElementById('birthday-photo');
+            const randomPhoto = document.getElementById('random-birthday-photo');
+            const randomPhoto2 = document.getElementById('random-birthday-photo-2');
+            
+            // If URL parameters provided, use those; otherwise use Google Drive
+            if (photo1 && centerPhoto) {
+                centerPhoto.src = decodeURIComponent(photo1);
+            }
+            
+            if (photo2 && randomPhoto) {
+                randomPhoto.src = decodeURIComponent(photo2);
+            }
+            
+            if (photo3 && randomPhoto2) {
+                randomPhoto2.src = decodeURIComponent(photo3);
+            }
+        }
+
+
+        // Initialize animations and load photos
+        window.addEventListener('load', () => {
+            createConfetti();
+            createSparkles();
+            getNameFromURL();
+            
+            // Check for URL parameters first
+            const urlParams = new URLSearchParams(window.location.search);
+            const photo1 = urlParams.get('photo1');
+            const photo2 = urlParams.get('photo2');
+            const photo3 = urlParams.get('photo3');
+            
+            const centerPhoto = document.getElementById('birthday-photo');
+            const randomPhoto = document.getElementById('random-birthday-photo');
+            const randomPhoto2 = document.getElementById('random-birthday-photo-2');
+            
+            // Make sure images are visible immediately
+            if (centerPhoto) centerPhoto.style.display = 'block';
+            if (randomPhoto) randomPhoto.style.display = 'block';
+            if (randomPhoto2) randomPhoto2.style.display = 'block';
+            
+            // If URL parameters provided, use those
+            if (photo1 && centerPhoto) {
+                centerPhoto.src = decodeURIComponent(photo1);
+            }
+            if (photo2 && randomPhoto) {
+                randomPhoto.src = decodeURIComponent(photo2);
+            }
+            if (photo3 && randomPhoto2) {
+                randomPhoto2.src = decodeURIComponent(photo3);
+            }
+            
+             // Images already have src in HTML, no need to load via JavaScript
+             // Only override if URL parameters are provided
+        });
+        
+        // Start loading photos immediately on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const centerPhoto = document.getElementById('birthday-photo');
+            const randomPhoto = document.getElementById('random-birthday-photo');
+            const randomPhoto2 = document.getElementById('random-birthday-photo-2');
+            
+            // Force images to be visible immediately and hide any text
+            [centerPhoto, randomPhoto, randomPhoto2].forEach(img => {
+                if (img) {
+                    // Remove all text attributes
+                    img.alt = '';
+                    img.title = '';
+                    img.removeAttribute('alt');
+                    img.removeAttribute('title');
+                    
+                    // Force display and hide text
+                    img.style.display = 'block';
+                    img.style.opacity = '1';
+                    img.style.visibility = 'visible';
+                    img.style.fontSize = '0';
+                    img.style.lineHeight = '0';
+                    img.style.color = 'transparent';
+                    img.style.textIndent = '-9999px';
+                    
+                    // Don't add error handlers - let images load naturally
+                }
+            });
+            
+            // Check for URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const photo1 = urlParams.get('photo1');
+            const photo2 = urlParams.get('photo2');
+            const photo3 = urlParams.get('photo3');
+            
+             // Images already have src in HTML - they will load automatically
+             // No JavaScript needed for image loading
+        });
+
+        // Add click sound effect (optional - using Web Audio API)
+        function playSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 440;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                // Silently fail if audio context is not supported
+            }
+        }
+
+        // Play sound on load
+        setTimeout(playSound, 500);
+    </script>
+</body>
+</html>
