@@ -179,8 +179,9 @@
         .photo {
             width: 350px;
             height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            aspect-ratio: 1 / 1 !important;
             border: 6px solid #ffd700;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             animation: photoGlow 2s ease-in-out infinite;
@@ -189,17 +190,15 @@
             background-position: center;
             display: block !important;
             margin: 0 auto;
-            min-height: 350px;
             opacity: 1 !important;
             visibility: visible !important;
             font-size: 0 !important;
             line-height: 0 !important;
             text-indent: -9999px !important;
-            overflow: hidden;
+            overflow: hidden !important;
             color: transparent !important;
             text-align: center;
             text-decoration: none !important;
-            /* Hide broken image icon and any text */
             font-family: Arial, sans-serif;
         }
         
@@ -222,8 +221,9 @@
             position: relative;
             width: 250px;
             height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            aspect-ratio: 1 / 1 !important;
             border: 5px solid #ff69b4;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             z-index: 5;
@@ -234,16 +234,14 @@
             background-position: center;
             display: block !important;
             flex-shrink: 0;
-            min-height: 250px;
             visibility: visible !important;
             font-size: 0 !important;
             line-height: 0 !important;
             text-indent: -9999px !important;
-            overflow: hidden;
+            overflow: hidden !important;
             color: transparent !important;
             text-align: center;
             text-decoration: none !important;
-            /* Hide broken image icon and any text */
             font-family: Arial, sans-serif;
         }
         
@@ -432,6 +430,9 @@
                 width: 250px;
                 height: 250px;
                 border-width: 4px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
             .photo-container {
                 margin: 1.5rem auto;
@@ -440,6 +441,9 @@
                 width: 180px;
                 height: 180px;
                 border-width: 4px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
             .cake {
                 font-size: 4rem;
@@ -472,6 +476,11 @@
             }
             .photo {
                 order: 1;
+                width: 240px;
+                height: 240px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
             .birthday-text {
                 font-size: 2.2rem;
@@ -481,13 +490,12 @@
             .birthday-text span {
                 white-space: nowrap;
             }
-            .photo {
-                width: 240px;
-                height: 240px;
-            }
             .random-photo {
                 width: 170px;
                 height: 170px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
         }
 
@@ -535,6 +543,9 @@
                 width: 220px;
                 height: 220px;
                 border-width: 3px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
             .photo-container {
                 margin: 1rem auto;
@@ -543,6 +554,9 @@
                 width: 150px;
                 height: 150px;
                 border-width: 3px;
+                border-radius: 50% !important;
+                aspect-ratio: 1 / 1 !important;
+                object-fit: cover !important;
             }
             .cake {
                 font-size: 3.5rem;
@@ -659,9 +673,9 @@
         <div class="cake">🎂</div>
         <div class="photo-container">
             <div class="photos-wrapper">
-                <img src="https://i.imgur.com/3jxPzAz.jpeg?v=2" alt="" class="random-photo random-photo-left" id="random-birthday-photo" width="250" height="250">
-                <img src="https://i.imgur.com/lFYZXR4.jpeg?v=2" alt="" class="photo" id="birthday-photo" width="350" height="350">
-                <img src="https://i.imgur.com/5lv2ki9.jpeg?v=2" alt="" class="random-photo random-photo-right" id="random-birthday-photo-2" width="250" height="250">
+                <img src="https://i.imgur.com/3jxPzAz.jpeg?v=2" alt="" class="random-photo random-photo-left" id="random-birthday-photo">
+                <img src="https://i.imgur.com/lFYZXR4.jpeg?v=2" alt="" class="photo" id="birthday-photo">
+                <img src="https://i.imgur.com/5lv2ki9.jpeg?v=2" alt="" class="random-photo random-photo-right" id="random-birthday-photo-2">
             </div>
         </div>
         <div class="name" id="name">Reyme Lyka!</div>
