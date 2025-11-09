@@ -673,9 +673,9 @@
         <div class="cake">🎂</div>
         <div class="photo-container">
             <div class="photos-wrapper">
-                <img src="https://i.imgur.com/3jxPzAz.jpeg?v=2" alt="" class="random-photo random-photo-left" id="random-birthday-photo">
-                <img src="https://i.imgur.com/lFYZXR4.jpeg?v=2" alt="" class="photo" id="birthday-photo">
-                <img src="https://i.imgur.com/5lv2ki9.jpeg?v=2" alt="" class="random-photo random-photo-right" id="random-birthday-photo-2">
+                <img src="https://drive.google.com/uc?export=view&id=1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U" alt="" class="random-photo random-photo-left" id="random-birthday-photo">
+                <img src="https://drive.google.com/uc?export=view&id=1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr" alt="" class="photo" id="birthday-photo">
+                <img src="https://drive.google.com/uc?export=view&id=1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7" alt="" class="random-photo random-photo-right" id="random-birthday-photo-2">
             </div>
         </div>
         <div class="name" id="name">Reyme Lyka!</div>
@@ -888,28 +888,28 @@
             const randomPhoto = document.getElementById('random-birthday-photo');
             const randomPhoto2 = document.getElementById('random-birthday-photo-2');
             
-            // Multiple URL formats to try for each image (trying different formats and domains)
+            // Multiple URL formats to try for each image (Google Drive with different formats)
             const photoUrls = {
                 center: [
-                    'https://i.imgur.com/lFYZXR4.jpeg',
-                    'https://i.imgur.com/lFYZXR4.jpg',
-                    'https://imgur.com/a/lFYZXR4',
-                    'https://i.imgur.com/lFYZXR4.png',
-                    'https://imgur.com/lFYZXR4.jpeg'
+                    'https://drive.google.com/uc?export=view&id=1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr',
+                    'https://drive.google.com/thumbnail?id=1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr&sz=w800',
+                    'https://drive.google.com/file/d/1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr/preview',
+                    'https://lh3.googleusercontent.com/d/1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr=w800-h800',
+                    'https://drive.google.com/uc?id=1jtr7MSPDwyjFRVuionuO1J1IWeCLw4Tr&export=download'
                 ],
                 left: [
-                    'https://i.imgur.com/3jxPzAz.jpeg',
-                    'https://i.imgur.com/3jxPzAz.jpg',
-                    'https://imgur.com/a/3jxPzAz',
-                    'https://i.imgur.com/3jxPzAz.png',
-                    'https://imgur.com/3jxPzAz.jpeg'
+                    'https://drive.google.com/uc?export=view&id=1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U',
+                    'https://drive.google.com/thumbnail?id=1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U&sz=w800',
+                    'https://drive.google.com/file/d/1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U/preview',
+                    'https://lh3.googleusercontent.com/d/1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U=w800-h800',
+                    'https://drive.google.com/uc?id=1LxSsMHAnNaFzK4u-RmGmmfOB63Lsrw_U&export=download'
                 ],
                 right: [
-                    'https://i.imgur.com/5lv2ki9.jpeg',
-                    'https://i.imgur.com/5lv2ki9.jpg',
-                    'https://imgur.com/a/5lv2ki9',
-                    'https://i.imgur.com/5lv2ki9.png',
-                    'https://imgur.com/5lv2ki9.jpeg'
+                    'https://drive.google.com/uc?export=view&id=1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7',
+                    'https://drive.google.com/thumbnail?id=1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7&sz=w800',
+                    'https://drive.google.com/file/d/1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7/preview',
+                    'https://lh3.googleusercontent.com/d/1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7=w800-h800',
+                    'https://drive.google.com/uc?id=1q6ZGNOY02crAEV6iUZuHvyNsLNilpoe7&export=download'
                 ]
             };
             
